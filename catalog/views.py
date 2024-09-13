@@ -26,8 +26,13 @@ class CookListView(ListView):
 
 class CookDetailView(DetailView):
     model = Cook
-    template_name = "catalog/cook_details.html"
+    template_name = "catalog/cook_detail.html"
     context_object_name = "cook_detail"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['ingredients'] = Ingredients.objects.filter(dishes__cooks=self.object).distinct()
+        return context
 
 
 class DishListView(ListView):
@@ -48,7 +53,7 @@ class DishTypeListView(ListView):
     model = DishType
     queryset = DishType.objects.all().order_by('name')
     paginate_by = 5
-    template_name = "catalog/dish_type.html"
+    template_name = "catalog/dish_type_list.html"
     context_object_name = "dish_type_list"
 
 
@@ -56,11 +61,3 @@ class DishTypeDetailView(DetailView):
     model = DishType
     template_name = "catalog/dish_type_detail.html"
     context_object_name = "dish_type_detail"
-
-
-class IngredientListView(ListView):
-    model = Ingredients
-    queryset = Ingredients.objects.all().order_by('name')
-    paginate_by = 5
-    template_name = "catalog/ingredients_list.html"
-    context_object_name = "ingredient_list"
