@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>{{ dish_type_detail.name }}</h1>
+
+  <h2>Dishes in this Type</h2>
+  <ul>
+    {% for dish in dish_type_detail.dish_set.all %}
+      <li><a href="{% url 'catalog:dish-detail' dish.pk %}">{{ dish.name }}</a> - {{ dish.price }}$</li>
+    {% empty %}
+      <li>No dishes available under this type.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
