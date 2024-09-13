@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Dish List</h1>
+
+  <ul>
+    {% for dish in dish_list %}
+      <li>
+        <a href="{% url 'catalog:dish-detail' dish.pk %}">{{ dish.name }}</a> - {{ dish.price }}$
+      </li>
+    {% empty %}
+      <li>No dishes available.</li>
+    {% endfor %}
+  </ul>
+
+  {% include "includes/pagination.html" %}
+{% endblock %}

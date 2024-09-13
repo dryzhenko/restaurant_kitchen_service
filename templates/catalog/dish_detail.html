@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>{{ dish_detail.name }}</h1>
+  <p><strong>Description:</strong> {{ dish_detail.description }}</p>
+  <p><strong>Price:</strong> {{ dish_detail.price }}$</p>
+  <p><strong>Dish Type:</strong> {{ dish_detail.dish_type.name }}</p>
+
+  <h2>Ingredients</h2>
+  <ul>
+    {% for ingredient in dish_detail.ingredients.all %}
+      <li>{{ ingredient }}</li>
+    {% empty %}
+      <li>No ingredients listed.</li>
+    {% endfor %}
+  </ul>
+
+  <h2>Cooks</h2>
+  <ul>
+    {% for cook in dish_detail.cooks.all %}
+      <li>{{ cook.first_name }} {{ cook.last_name }} ({{ cook.years_of_experience }} years of experience)</li>
+    {% empty %}
+      <li>No cooks assigned to this dish.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
