@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<table>
+  <tr>
+    <th>Username</th>
+    <th>Years of experience</th>
+  </tr>
+  {% for cook in cook_list %}
+  <tr>
+    <td><a href="{% url 'catalog:cook-detail' cook.pk %}">{{ cook.username }}</a></td>
+    <td>{{ cook.years_of_experience }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% include "includes/pagination.html" %}
+{% endblock %}
