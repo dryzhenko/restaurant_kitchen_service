@@ -1,16 +1,22 @@
 {% extends "base.html" %}
 {% block content %}
-<table>
-  <tr>
-    <th>Username</th>
-    <th>Years of experience</th>
-  </tr>
+  <h1>List of cookers</h1>
+  
+{% if cook_list %}
+  <table class="table">
+    <tr>
+      <th>ID</th>
+      <th>Username</th>
+      <th>Years  of experience</th>
+    </tr>
   {% for cook in cook_list %}
-  <tr>
-    <td><a href="{% url 'catalog:cook-detail' cook.pk %}">{{ cook.username }}</a></td>
-    <td>{{ cook.years_of_experience }}</td>
-  </tr>
+    <tr>
+      <td>{{ cook.id }}</td>
+      <td><a href="{% url 'catalog:cook-detail' pk=cook.id %}">{{ cook.username }}{% if cook == user %}(Me){% endif %}</a></td>
+      <td>{{ cook.years_of_experience}}</td>
+    </tr>
   {% endfor %}
-</table>
+  </table>
+{% endif %}
 {% include "includes/pagination.html" %}
 {% endblock %}
