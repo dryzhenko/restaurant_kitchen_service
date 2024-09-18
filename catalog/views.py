@@ -7,10 +7,13 @@ from catalog.models import Dish, DishType, Cook, Ingredients
 def index(request):
     """View function for the home page of the site."""
 
+    num_visits = request.session.get("num_visits", 0)
+    request.session["num_visits"] = num_visits + 1
     context = {
         "num_cookers": Cook.objects.count(),
         "num_dishes": Dish.objects.count(),
         "num_dish_types": DishType.objects.count(),
+        "num_visits": num_visits + 1,
     }
 
     return render(request, "catalog/index.html", context=context)

@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Welcome to Restaurant Kitchen Service</h1>
-    <ul>
-        <li>Number of cookers: {{ num_cookers }}</li>
-        <li>Number of dish types: {{ num_dish_types }}</li>
-        <li>Number of dishes: {{ num_dishes }}</li>
-    </ul>
+  <h1>Welcome to Restaurant Kitchen Service</h1>
+  <ul>
+    <li>Number of cookers: {{ num_cookers }}</li>
+    <li>Number of dish types: {{ num_dish_types }}</li>
+    <li>Number of dishes: {{ num_dishes }}</li>
+  </ul>
+  <p>You have visited this page {{ num_visits }} time{{ num_visits|pluralize }}</p>
 {% endblock %}
