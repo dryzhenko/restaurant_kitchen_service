@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from catalog.forms import CookCreationForm, CookExperienceUpdateForm
+from catalog.forms import CookCreationForm, CookExperienceUpdateForm, DishForm
 from catalog.models import Dish, DishType, Cook, Ingredients
 
 
@@ -76,7 +76,7 @@ class DishDetailView(generic.DetailView):
 
 class DishCreateView(LoginRequiredMixin, generic.CreateView):
     model = Dish
-    fields = "__all__"
+    form_class = DishForm
     success_url = reverse_lazy("catalog:dish-list")
     template_name = "catalog/dish_form.html"
 
