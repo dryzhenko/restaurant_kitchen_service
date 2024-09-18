@@ -8,12 +8,16 @@
       <th>ID</th>
       <th>Username</th>
       <th>Years  of experience</th>
+      <th>Update experience</th>
+      <th>Delete</th>
     </tr>
   {% for cook in cook_list %}
     <tr>
       <td>{{ cook.id }}</td>
       <td><a href="{% url 'catalog:cook-detail' pk=cook.id %}">{{ cook.username }}{% if cook == user %}(Me){% endif %}</a></td>
       <td>{{ cook.years_of_experience}}</td>
+      <td><a href="{% url 'catalog:cook-update' pk=cook.id %}">Update</a></td>
+      <td><a href="{% url 'catalog:cook-delete' pk=cook.id %}">Delete</a></td>
     </tr>
   {% endfor %}
   </table>
