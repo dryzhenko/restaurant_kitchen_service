@@ -15,7 +15,7 @@ class CookCreationForm(UserCreationForm):
 class CookExperienceUpdateForm(forms.ModelForm):
     class Meta:
         model = Cook
-        fields = ("years_ofExperience",)
+        fields = ("years_of_experience",)
 
     def clean_years_of_experience(self):
         years_of_experience = self.cleaned_data["years_of_experience"]
