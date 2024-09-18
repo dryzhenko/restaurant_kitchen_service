@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
-from catalog.models import Cook, Dish, DishType
+from catalog.models import Cook, Dish, DishType, Ingredients
 
 
 @admin.register(Cook)
@@ -24,5 +24,11 @@ class DishAdmin(admin.ModelAdmin):
 
 @admin.register(DishType)
 class DishTypeAdmin(admin.ModelAdmin):
+    list_display = ("name",)
+    search_fields = ("name",)
+
+
+@admin.register(Ingredients)
+class IngredientsAdmin(admin.ModelAdmin):
     list_display = ("name",)
     search_fields = ("name",)
