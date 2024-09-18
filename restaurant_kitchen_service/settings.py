@@ -130,3 +130,5 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'catalog.Cook'
+
+LOGIN_REDIRECT_URL = "/"
