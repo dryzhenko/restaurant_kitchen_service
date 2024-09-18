@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-  <h1>List of cookers</h1>
+  <h1>List of cookers<a style="float: right" href="{% url 'catalog:cook-create' %}">+</a></h1>
   
 {% if cook_list %}
   <table class="table">
