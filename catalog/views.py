@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views import generic
 
 from catalog.models import Dish, DishType, Cook, Ingredients
@@ -55,6 +56,26 @@ class DishDetailView(generic.DetailView):
     context_object_name = "dish_detail"
 
 
+class DishCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Dish
+    fields = "__all__"
+    success_url = reverse_lazy("catalog:dish-list")
+    template_name = "catalog/dish_form.html"
+
+
+class DishUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Dish
+    fields = "__all__"
+    success_url = reverse_lazy("catalog:dish-list")
+    template_name = "catalog/dish_form.html"
+
+
+class DishDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Dish
+    success_url = reverse_lazy("catalog:dish-list")
+    template_name = "catalog/dish_confirm_delete.html"
+
+
 class DishTypeListView(LoginRequiredMixin, generic.ListView):
     model = DishType
     queryset = DishType.objects.all().order_by('name')
@@ -67,3 +88,23 @@ class DishTypeDetailView(generic.DetailView):
     model = DishType
     template_name = "catalog/dish_type_detail.html"
     context_object_name = "dish_type_detail"
+
+
+class DishTypeCreateView(LoginRequiredMixin, generic.CreateView):
+    model = DishType
+    fields = "__all__"
+    success_url = reverse_lazy("catalog:dish-type-list")
+    template_name = "catalog/dish_type_form.html"
+
+
+class DishTypeUpdateView(LoginRequiredMixin, generic.CreateView):
+    model = DishType
+    fields = "__all__"
+    success_url = reverse_lazy("catalog:dish-type-list")
+    template_name = "catalog/dish_type_form.html"
+
+
+class DishTypeDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = DishType
+    success_url = reverse_lazy("catalog:dish-type-list")
+    template_name = "catalog/dish_type_confirm_delete.html"
