@@ -14,12 +14,18 @@ from catalog.views import (
     DishTypeCreateView,
     DishTypeUpdateView,
     DishTypeDeleteView,
+    CookCreateView,
+    CookUpdateView,
+    CookDeleteView,
 )
 
 urlpatterns = [
     path("", index, name="index"),
     path("cook/", CookListView.as_view(), name="cook-list"),
     path("cook/<int:pk>", CookDetailView.as_view(), name="cook-detail"),
+    path("cook/create/", CookCreateView.as_view(), name="cook-create"),
+    path("cook/<int:pk>/update", CookUpdateView.as_view(), name="cook-update"),
+    path("cook/<int:pk>/delete", CookDeleteView.as_view(), name="cook-delete"),
     path("dish/", DishListView.as_view(), name="dish-list"),
     path("dish/<int:pk>", DishDetailView.as_view(), name="dish-detail"),
     path("dish/create/", DishCreateView.as_view(), name="dish-create"),
