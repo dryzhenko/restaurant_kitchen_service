@@ -18,7 +18,7 @@
   <h2>Cooks</h2>
   <ul>
     {% for cook in dish_detail.cooks.all %}
-      <li>{{ cook.first_name }} {{ cook.last_name }} ({{ cook.years_of_experience }} years of experience)</li>
+      <li><a href="{% url 'catalog:cook-detail' pk=cook.id %}">{{ cook.first_name }} {{ cook.last_name }}</a> ({{ cook.years_of_experience }} years of experience)</li>
     {% empty %}
       <li>No cooks assigned to this dish.</li>
     {% endfor %}
