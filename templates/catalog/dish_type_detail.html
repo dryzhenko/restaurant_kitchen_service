@@ -4,11 +4,30 @@
   <h1>{{ dish_type_detail.name }}</h1>
 
   <h2>Dishes in this Type</h2>
-  <ul>
+  
+  {% if dish_type_detail.dish_set.all %}
+    <table class="table">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Dish type</th>
+        <th>Cooker</th>
+      </tr>
     {% for dish in dish_type_detail.dish_set.all %}
-      <li><a href="{% url 'catalog:dish-detail' dish.pk %}">{{ dish.name }}</a> - {{ dish.price }}$</li>
-    {% empty %}
-      <li>No dishes available under this type.</li>
+      <tr>
+        <td>{{ dish.id }}</td>
+        <td><a href="{% url 'catalog:dish-detail' pk=dish.id %}">{{ dish.name }}</a></td>
+        <td>{{ dish.price }}</td>
+        <td>{{ dish.dish_type }}</td>
+        <td>
+          {% for cook in dish.cooks.all %}
+            {{ cook.username }}
+          {% endfor %}
+        </td>
+      </tr>
     {% endfor %}
-  </ul>
+    </table>
+  {% endif %}
+  
 {% endblock %}
