@@ -18,17 +18,13 @@ class CookExperienceUpdateForm(forms.ModelForm):
 
     def clean_years_of_experience(self):
         years_of_experience = self.cleaned_data["years_of_experience"]
-        if len(years_of_experience) > 2:
+        if years_of_experience > 99:
             raise ValidationError(
                 "You have entered a number that is too large for years of experience."
             )
         if years_of_experience < 0:
             raise ValidationError(
                 "Years of experience must be greater than 0."
-            )
-        if years_of_experience.isalpha():
-            raise ValidationError(
-                "Years of experience must be a digit."
             )
 
 
