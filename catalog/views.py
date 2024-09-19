@@ -4,8 +4,19 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from catalog.forms import CookCreationForm, CookExperienceUpdateForm, DishForm, DishSearchForm, CookSearchForm, DishTypeSearchForm
-from catalog.models import Dish, DishType, Cook, Ingredients
+from catalog.forms import (
+    CookCreationForm,
+    CookExperienceUpdateForm,
+    DishForm, DishSearchForm,
+    CookSearchForm,
+    DishTypeSearchForm
+)
+from catalog.models import (
+    Dish,
+    DishType,
+    Cook,
+    Ingredients
+)
 
 
 @login_required
@@ -26,7 +37,7 @@ def index(request):
 
 class CookListView(LoginRequiredMixin, generic.ListView):
     model = Cook
-    queryset = Cook.objects.all().order_by('first_name')
+    queryset = Cook.objects.all().order_by("first_name")
     paginate_by = 5
     template_name = "catalog/cook_list.html"
     context_object_name = "cook_list"
@@ -50,7 +61,9 @@ class CookDetailView(generic.DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['ingredients'] = Ingredients.objects.filter(dishes__cooks=self.object).distinct()
+        context["ingredients"] = Ingredients.objects.filter(
+            dishes__cooks=self.object
+        ).distinct()
         return context
 
 
@@ -73,7 +86,7 @@ class CookDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 class DishListView(LoginRequiredMixin, generic.ListView):
     model = Dish
-    queryset = Dish.objects.all().order_by('name')
+    queryset = Dish.objects.all().order_by("name")
     paginate_by = 5
     template_name = "catalog/dish_list.html"
     context_object_name = "dish_list"
@@ -118,7 +131,7 @@ class DishDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 class DishTypeListView(LoginRequiredMixin, generic.ListView):
     model = DishType
-    queryset = DishType.objects.all().order_by('name')
+    queryset = DishType.objects.all().order_by("name")
     paginate_by = 5
     template_name = "catalog/dish_type_list.html"
     context_object_name = "dish_type_list"

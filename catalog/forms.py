@@ -20,7 +20,8 @@ class CookExperienceUpdateForm(forms.ModelForm):
         years_of_experience = self.cleaned_data["years_of_experience"]
         if years_of_experience > 99:
             raise ValidationError(
-                "You have entered a number that is too large for years of experience."
+                "You have entered a number that is too "
+                "large for years of experience."
             )
         if years_of_experience < 0:
             raise ValidationError(
@@ -33,8 +34,8 @@ class DishForm(forms.ModelForm):
         model = Dish
         fields = "__all__"
         widgets = {
-            'cooks': forms.CheckboxSelectMultiple(),
-            'ingredients': forms.CheckboxSelectMultiple(),
+            "cooks": forms.CheckboxSelectMultiple(),
+            "ingredients": forms.CheckboxSelectMultiple(),
         }
 
 

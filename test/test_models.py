@@ -12,7 +12,7 @@ class DishTypeModelTest(TestCase):
 
     def test_dish_type_unique(self):
         with self.assertRaises(Exception):
-            DishType.objects.create(name="Appetizer")  # Duplicate should raise an error
+            DishType.objects.create(name="Appetizer")
 
 
 class CookModelTest(TestCase):
@@ -40,7 +40,7 @@ class IngredientsModelTest(TestCase):
 
     def test_ingredient_unique(self):
         with self.assertRaises(Exception):
-            Ingredients.objects.create(name="Tomato")  # Duplicate should raise an error
+            Ingredients.objects.create(name="Tomato")
 
 
 class DishModelTest(TestCase):
