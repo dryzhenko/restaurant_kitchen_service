@@ -40,3 +40,42 @@ class DishForm(forms.ModelForm):
             'cooks': forms.CheckboxSelectMultiple(),
             'ingredients': forms.CheckboxSelectMultiple(),
         }
+
+
+class CookSearchForm(forms.Form):
+    username = forms.CharField(
+        max_length=255,
+        required=False,
+        label="",
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Search by username",
+            }
+        )
+    )
+
+
+class DishSearchForm(forms.Form):
+    name = forms.CharField(
+        max_length=50,
+        required=False,
+        label="",
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Search by dish name",
+            }
+        )
+    )
+
+
+class DishTypeSearchForm(forms.Form):
+    name = forms.CharField(
+        max_length=50,
+        required=False,
+        label="",
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Search by dish type name",
+            }
+        )
+    )
