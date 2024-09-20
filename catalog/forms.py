@@ -18,6 +18,10 @@ class CookExperienceUpdateForm(forms.ModelForm):
 
     def clean_years_of_experience(self):
         years_of_experience = self.cleaned_data["years_of_experience"]
+        if years_of_experience is None:
+            raise ValidationError(
+                "Years of experience cannot be null."
+            )
         if years_of_experience > 99:
             raise ValidationError(
                 "You have entered a number that is too "
@@ -27,6 +31,7 @@ class CookExperienceUpdateForm(forms.ModelForm):
             raise ValidationError(
                 "Years of experience must be greater than 0."
             )
+        return years_of_experience
 
 
 class DishForm(forms.ModelForm):

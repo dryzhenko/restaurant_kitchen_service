@@ -1,32 +1,50 @@
-{% extends "base.html" %}
+{% extends "layouts/base-presentation.html" %}
 {% load crispy_forms_filters %}
+
 {% block content %}
-  <h1>List of cookers<a style="float: right" href="{% url 'catalog:cook-create' %}">+</a></h1>
-  
-  <form method="get" action="" class="form-inline">
-  {{ search_form|crispy }}
-  <input class="btn btn-secondary" type="submit" value="🕵">
-  </form>
-  
-{% if cook_list %}
-  <table class="table">
-    <tr>
-      <th>ID</th>
-      <th>Username</th>
-      <th>Years  of experience</th>
-      <th>Update experience</th>
-      <th>Delete</th>
-    </tr>
-  {% for cook in cook_list %}
-    <tr>
-      <td>{{ cook.id }}</td>
-      <td><a href="{% url 'catalog:cook-detail' pk=cook.id %}">{{ cook.username }}{% if cook == user %}(Me){% endif %}</a></td>
-      <td>{{ cook.years_of_experience}}</td>
-      <td><a href="{% url 'catalog:cook-update' pk=cook.id %}">Update</a></td>
-      <td><a href="{% url 'catalog:cook-delete' pk=cook.id %}">Delete</a></td>
-    </tr>
-  {% endfor %}
-  </table>
-{% endif %}
-{% include "includes/pagination.html" %}
+<div class="container mt-5">
+  <div class="card shadow-lg border-0 rounded-lg">
+    <div class="card-header bg-gradient-primary text-white">
+      <h1>List of Cookers
+        <a style="float: right" href="{% url 'catalog:cook-create' %}" class="btn bg-gradient-light text-dark">+</a>
+      </h1>
+    </div>
+    <div class="card-body">
+      <form method="get" action="" class="form-inline">
+        {{ search_form|crispy }}
+        <button class="btn bg-gradient-info" type="submit">Search 🕵</button>
+      </form>
+
+      {% if cook_list %}
+        <table class="table table-striped mt-4">
+          <thead class="thead-light">
+            <tr>
+              <th>ID</th>
+              <th>Username</th>
+              <th>Years of experience</th>
+              <th>Update experience</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for cook in cook_list %}
+              <tr>
+                <td>{{ cook.id }}</td>
+                <td>
+                  <a href="{% url 'catalog:cook-detail' pk=cook.id %}">
+                    {{ cook.username }}{% if cook == user %} (Me){% endif %}
+                  </a>
+                </td>
+                <td>{{ cook.years_of_experience}}</td>
+                <td><a href="{% url 'catalog:cook-update' pk=cook.id %}" class="btn btn-sm bg-gradient-warning">Update</a></td>
+                <td><a href="{% url 'catalog:cook-delete' pk=cook.id %}" class="btn btn-sm bg-gradient-danger">Delete</a></td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        {% include "includes/pagination.html" %}
+      {% endif %}
+    </div>
+  </div>
+</div>
 {% endblock %}

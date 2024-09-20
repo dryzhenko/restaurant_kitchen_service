@@ -66,6 +66,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'catalog.context_processors.cfg_assets_root',
             ],
         },
     },
@@ -125,7 +126,10 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
-CRISPY_TEMPLATE_PACK="bootstrap4"
+# Assets Management
+ASSETS_ROOT = '/static/assets'
+
+CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

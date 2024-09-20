@@ -1,31 +1,37 @@
-{% extends "base.html" %}
+{% extends "layouts/base-presentation.html" %}
 
 {% block content %}
-  <h1>Cook Details: {{ cook_detail.first_name }} {{ cook_detail.last_name }}</h1>
+<div class="container mt-5">
+  <div class="card shadow-lg border-0 rounded-lg">
+    <div class="card-header bg-gradient-info text-white">
+      <h1>Cook Details: {{ cook_detail.first_name }} {{ cook_detail.last_name }}</h1>
+    </div>
+    <div class="card-body">
+      <p><strong>Username:</strong> {{ cook_detail.username }}</p>
+      <p><strong>Years of experience:</strong> {{ cook_detail.years_of_experience }}</p>
 
-  <p><strong>Username:</strong> {{ cook_detail.username }}</p>
-  <p><strong>Years of experience:</strong> {{ cook_detail.years_of_experience }}</p>
-  
-  <h2>Dishes prepared by {{ cook_detail.first_name }}</h2>
-  {% if cook_detail.dishes.exists %}
-    <ul>
-      {% for dish in cook_detail.dishes.all %}
-        <li>
-          <strong>{{ dish.name }}</strong> ({{ dish.dish_type.name }}) - {{ dish.description }} <br>
-          Price: {{ dish.price }}$
-        </li>
-      {% endfor %}
-    </ul>
-  {% else %}
-    <p>This cook hasn't prepared any dishes yet.</p>
-  {% endif %}
-  
-  <h2>Ingredients used in the dishes</h2>
-  <ul>
-    {% for ingredient in ingredients %}
-      <li>{{ ingredient.name }}</li>
-    {% endfor %}
-  </ul>
+      <h2 class="mt-4">Dishes prepared by {{ cook_detail.first_name }}</h2>
+      {% if cook_detail.dishes.exists %}
+        <ul>
+          {% for dish in cook_detail.dishes.all %}
+            <li>
+              <strong>{{ dish.name }}</strong> ({{ dish.dish_type.name }}) - {{ dish.description }} <br>
+              <span class="text-primary">Price: ${{ dish.price }}</span>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p>This cook hasn't prepared any dishes yet.</p>
+      {% endif %}
 
-  <a href="{% url 'catalog:cook-list' %}">Back to Cook List</a>
+      <h2 class="mt-4">Ingredients used in the dishes</h2>
+      <ul>
+        {% for ingredient in ingredients %}
+          <li>{{ ingredient.name }}</li>
+        {% endfor %}
+      </ul>
+      <a href="{% url 'catalog:cook-list' %}" class="btn bg-gradient-primary text-white">Back to Cook List</a>
+    </div>
+  </div>
+</div>
 {% endblock %}

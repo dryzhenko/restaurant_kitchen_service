@@ -1,32 +1,45 @@
-{% extends "base.html" %}
+{% extends "layouts/base-presentation.html" %}
 {% load crispy_forms_filters %}
 
 {% block content %}
-  <h1>Dish Types<a style="float: right" href="{% url 'catalog:dish-type-create' %}">+</a></h1>
-  
-  <form method="get" action="" class="form-inline">
-  {{ search_form|crispy }}
-  <input class="btn btn-secondary" type="submit" value="🕵">
-  </form>
-  
-  {% if dish_type_list %}
-    <table class="table">
-      <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Update</th>
-        <th>Delete</th>
-      </tr>
-    {% for dish_type in dish_type_list %}
-      <tr>
-        <td>{{ dish_type.id }}</td>
-        <td><a href="{% url 'catalog:dish_type-detail' pk=dish_type.id %}">{{ dish_type.name }}</a></td>
-        <td><a href="{% url 'catalog:dish-type-update' pk=dish_type.id %}">Update</a></td>
-        <td><a href="{% url 'catalog:dish-type-delete' pk=dish_type.id %}">Delete</a></td>
-      </tr>
-    {% endfor %}
-    </table>
-  {% endif %}
+<div class="container mt-5">
+  <div class="card shadow-lg border-0 rounded-lg">
+    <div class="card-header bg-gradient-primary text-white">
+      <h1>Dish Types
+        <a style="float: right" href="{% url 'catalog:dish-type-create' %}" class="btn bg-gradient-light text-dark">+</a>
+      </h1>
+    </div>
+    <div class="card-body">
+      <form method="get" action="" class="form-inline">
+        {{ search_form|crispy }}
+        <button class="btn bg-gradient-info" type="submit">Search 🕵</button>
+      </form>
 
-  {% include "includes/pagination.html" %}
+      {% if dish_type_list %}
+        <table class="table table-striped mt-4">
+          <thead class="thead-light">
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Update</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for dish_type in dish_type_list %}
+            <tr>
+              <td>{{ dish_type.id }}</td>
+              <td><a href="{% url 'catalog:dish_type-detail' pk=dish_type.id %}">{{ dish_type.name }}</a></td>
+              <td><a href="{% url 'catalog:dish-type-update' pk=dish_type.id %}" class="btn btn-sm bg-gradient-warning">Update</a></td>
+              <td><a href="{% url 'catalog:dish-type-delete' pk=dish_type.id %}" class="btn btn-sm bg-gradient-danger">Delete</a></td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+        {% include "includes/pagination.html" %}
+      {% endif %}
+    </div>
+  </div>
+</div>
 {% endblock %}
+

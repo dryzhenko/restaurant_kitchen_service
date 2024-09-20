@@ -1,26 +1,35 @@
-{% extends "base.html" %}
+{% extends "layouts/base-presentation.html" %}
 
 {% block content %}
-  <h1>{{ dish_detail.name }}</h1>
-  <p><strong>Description:</strong> {{ dish_detail.description }}</p>
-  <p><strong>Price:</strong> {{ dish_detail.price }}$</p>
-  <p><strong>Dish Type:</strong> {{ dish_detail.dish_type.name }}</p>
+<div class="container mt-5">
+  <div class="card shadow-lg border-0 rounded-lg">
+    <div class="card-header bg-gradient-info text-white">
+      <h1>{{ dish_detail.name }}</h1>
+    </div>
+    <div class="card-body">
+      <p><strong>Description:</strong> {{ dish_detail.description }}</p>
+      <p><strong>Price:</strong> {{ dish_detail.price }}$</p>
+      <p><strong>Dish Type:</strong> {{ dish_detail.dish_type.name }}</p>
 
-  <h2>Ingredients</h2>
-  <ul>
-    {% for ingredient in dish_detail.ingredients.all %}
-      <li>{{ ingredient }}</li>
-    {% empty %}
-      <li>No ingredients listed.</li>
-    {% endfor %}
-  </ul>
+      <h2>Ingredients</h2>
+      <ul>
+        {% for ingredient in dish_detail.ingredients.all %}
+          <li>{{ ingredient }}</li>
+        {% empty %}
+          <li>No ingredients listed.</li>
+        {% endfor %}
+      </ul>
 
-  <h2>Cooks</h2>
-  <ul>
-    {% for cook in dish_detail.cooks.all %}
-      <li><a href="{% url 'catalog:cook-detail' pk=cook.id %}">{{ cook.first_name }} {{ cook.last_name }}</a> ({{ cook.years_of_experience }} years of experience)</li>
-    {% empty %}
-      <li>No cooks assigned to this dish.</li>
-    {% endfor %}
-  </ul>
+      <h2>Cooks</h2>
+      <ul>
+        {% for cook in dish_detail.cooks.all %}
+          <li><a href="{% url 'catalog:cook-detail' pk=cook.id %}">{{ cook.first_name }} {{ cook.last_name }}</a> ({{ cook.years_of_experience }} years of experience)</li>
+        {% empty %}
+          <li>No cooks assigned to this dish.</li>
+        {% endfor %}
+      </ul>
+      <a href="{% url 'catalog:dish-list' %}" class="btn bg-gradient-primary text-white">Back to Dish List</a>
+    </div>
+  </div>
+</div>
 {% endblock %}
