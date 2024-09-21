@@ -1,0 +1,24 @@
+<ul class="sidebar-nav">
+  {% if user.is_authenticated %}
+    <li>
+      User: <a href="{% url 'catalog:cook-detail' user.id %}">{{ user.username }}</a>
+    </li>
+    <li>
+      <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+      </form>
+    </li>
+  {% else %}
+    <li>
+      <form action="{% url 'login' %}" method="get">
+        <button type="submit">Login</button>
+      </form>
+    </li>
+  {% endif %}
+
+  <li><a href="{% url 'catalog:index' %}">Home page</a></li>
+  <li><a href="{% url 'catalog:cook-list' %}">Cookers</a></li>
+  <li><a href="{% url 'catalog:dish-list' %}">Dishes</a></li>
+  <li><a href="{% url 'catalog:dish_type-list' %}">DishTypes</a></li>
+</ul>

@@ -1,0 +1,19 @@
+{% extends "layouts/base-presentation.html" %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="card shadow-lg border-0 rounded-lg">
+    <div class="card-header bg-gradient-danger text-white">
+      <h1>Delete Cook</h1>
+    </div>
+    <div class="card-body">
+      <p>Are you sure you want to delete the cook: <strong>{{ cook }}</strong>?</p>
+      <form action="" method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn bg-gradient-danger text-white">Yes, delete</button>
+        <a href="{% url 'catalog:cook-list' %}" class="btn bg-gradient-secondary text-white">Cancel</a>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
