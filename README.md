@@ -8,6 +8,10 @@ The website contains several pages that present key information:
 
 [Restaurant Kitchen Service  deployed to Render](https://restaurant-kitchen-service-cx3e.onrender.com)
 
+test user
+login: user
+password: user12345
+
 ## Installation
 
 Phyton3 must be already installed
