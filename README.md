@@ -6,7 +6,7 @@ The website contains several pages that present key information:
 
 ## Check it out!
 
-[Restaurant Kitchen Service  deployed to Render](https://restaurant-kitchen-service-ae3j.onrender.com/)
+[Restaurant Kitchen Service  deployed to Render](https://restaurant-kitchen-service-cx3e.onrender.com)
 
 ## Installation
 
